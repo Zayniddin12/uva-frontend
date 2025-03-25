@@ -1,0 +1,297 @@
+<template>
+  <div class="bg-white h-full flex items-center justify-center py-8">
+    <div class="container auth-login f:w-max !max-w-[382px] mx-[auto] my-0">
+      <h3 class="auth__title">{{ $t('registration') }}</h3>
+      <v-card class="!max-w-[381px] mx-[auto] g:flex-col">
+        <v-tabs v-model="tab" icons-and-text>
+          <v-tabs-slider></v-tabs-slider>
+          <v-tab href="#tab-1">
+            <svg
+              width="20"
+              height="18"
+              viewBox="0 0 20 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.99281 8.66523C0.833304 5.24996 2.91659 2.44861 5.2367 1.73856C7.49993 1.04592 9.16662 1.75135 9.99992 2.74996C10.8333 1.75135 12.4999 1.04864 14.7543 1.73856C17.2257 2.49488 19.1666 5.24996 18.0061 8.66523C16.5412 13.0902 10.8333 16.4985 9.99989 16.4986C9.16648 16.4986 3.50686 13.1419 1.99281 8.66523Z"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            {{ $t('volunteers') }}
+          </v-tab>
+          <v-tab href="#tab-2">
+            <svg
+              width="22"
+              height="19"
+              viewBox="0 0 22 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.77215 14.1899C4.80843 13.682 4.82656 13.4281 4.86619 13.2491C5.11712 12.1151 5.97957 11.3733 7.13837 11.2949C7.32136 11.2825 7.60682 11.3051 8.17775 11.3502C9.02326 11.4171 9.94331 11.4667 10.8122 11.4667C11.7806 11.4667 12.8621 11.4051 13.8467 11.3266C14.4049 11.2822 14.684 11.2599 14.8752 11.274C16.0091 11.3577 16.8755 12.1025 17.1286 13.2109C17.1713 13.3978 17.1895 13.6529 17.2259 14.1629V14.1629C17.267 14.7377 17.2875 15.025 17.2665 15.2635C17.1458 16.6323 16.1105 17.7441 14.7538 17.962C14.5175 18 14.2293 18 13.6531 18H10.8122H8.31986C7.76857 18 7.49293 18 7.26658 17.9652C5.89315 17.7543 4.8443 16.6279 4.73178 15.2429C4.71324 15.0147 4.73288 14.7397 4.77215 14.1899V14.1899Z"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+              />
+              <path
+                d="M7.5 4.5C7.5 2.567 9.067 1 11 1V1C12.933 1 14.5 2.567 14.5 4.5V5C14.5 6.65685 13.1569 8 11.5 8V8H10.5V8C8.84315 8 7.5 6.65685 7.5 5V4.5Z"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+              />
+              <path
+                d="M19.5 11C19.5 11 21 11.6176 21 13.5C21 15.3824 19.5 16 19.5 16"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2.5 11C2.5 11 1 11.5 1 13.5C1 15.5 2.5 16 2.5 16"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 1.5C17 1.5 19 1.91455 19 4C19 6.08545 17 6.5 17 6.5"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 1.5C5 1.5 3 1.83423 3 4C3 6.16576 5 6.5 5 6.5"
+                stroke="#2C2D33"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            {{ $t('organizations') }}
+          </v-tab>
+        </v-tabs>
+      </v-card>
+
+      <form class="form-tab" @submit.prevent="handleSubmit">
+        <v-tabs-items v-model="tab">
+          <v-tab-item value="tab-1">
+            <p class="auth__subtitle">{{ $t('glad_to_see') }}</p>
+          </v-tab-item>
+          <v-tab-item value="tab-2">
+            <p class="auth__subtitle">{{ $t('glad_to_see_organization') }}</p>
+          </v-tab-item>
+        </v-tabs-items>
+
+        <v-card class="!max-w-[381px] mx-[auto]">
+          <v-tabs v-model="formTab" icons-and-text>
+            <v-tabs-slider></v-tabs-slider>
+            <v-tab href="#phone"> {{ $t('via_phone') }} </v-tab>
+            <v-tab href="#email"> {{ $t('via_email') }} </v-tab>
+          </v-tabs>
+        </v-card>
+
+        <v-tabs-items v-model="formTab">
+          <v-tab-item value="phone">
+            <FormGroup
+              id="nameInput"
+              :label="$t('phone_number')"
+              for-id="name"
+              required
+            >
+              <FormInput
+                id="nameInput"
+                v-model="formPhone.phone"
+                mask="+998 (##) ###-##-##"
+                :error="$v.formPhone.phone.$error"
+                maxlength="19"
+                :placeholder="`+998 (__) ___-__-__`"
+                @input="$v.formPhone.phone.$touch()"
+              />
+            </FormGroup>
+          </v-tab-item>
+          <v-tab-item value="email">
+            <FormGroup id="email" :label="$t('email')" for-id="name" required>
+              <FormInput
+                id="email"
+                v-model="formEmail.email"
+                :error="$v.formEmail.email.$error"
+                :placeholder="$t('enter_email')"
+                @input="$v.formEmail.email.$touch()"
+              /> </FormGroup
+          ></v-tab-item>
+        </v-tabs-items>
+
+        <VButton
+          :loading="loading"
+          :disabled="disabled"
+          :text="$t('continue')"
+          type="submit"
+          class="auth__continue-link"
+          :class="{ 'duration-200 !bg-gray-200 hover:!bg-gray-300': disabled }"
+        />
+        <div class="auth__not-account">
+          <p>{{ $t('have_account') }}</p>
+          <nuxt-link :to="localePath('/auth/login')" class="auth__link">
+            {{ $t('sign_in') }}
+          </nuxt-link>
+        </div>
+      </form>
+      <recaptcha />
+    </div>
+  </div>
+</template>
+
+<script>
+import { minLength, required, email } from 'vuelidate/lib/validators'
+import { mapState } from 'vuex'
+import VButton from '../../components/form/VButton.vue'
+import FormInput from '~/components/form/Input.vue'
+import FormGroup from '~/components/new/Form/CGroup.vue'
+
+export default {
+  components: {
+    FormGroup,
+    FormInput,
+    VButton,
+  },
+  layout: 'pages',
+  data() {
+    return {
+      loading: false,
+      tab: this.$store.state.author.author || null,
+      formTab: 'phone',
+      formPhone: {
+        phone: '',
+      },
+      formEmail: {
+        email: '',
+      },
+      disabled: true,
+    }
+  },
+  validations: {
+    formPhone: {
+      phone: { required, minLength: minLength(19) },
+    },
+    formEmail: {
+      email: { required, email },
+    },
+  },
+  computed: {
+    route() {
+      return this.$route
+    },
+    ...mapState({
+      globalTab: (state) => state.author.formTab,
+    }),
+  },
+  watch: {
+    tab(newValue, oldValue) {
+      this.$store.commit('author/setAuthor', newValue)
+      if (newValue !== oldValue && this.formPhone.phone.length > 4) {
+        this.formPhone.phone = '+998'
+        this.$v.formPhone.phone.$reset()
+      }
+    },
+
+    formPhone: {
+      deep: true,
+      handler() {
+        this.disabled = this.$v.formPhone.phone.$invalid
+      },
+    },
+    formEmail: {
+      deep: true,
+      handler() {
+        this.disabled = this.$v.formEmail.email.$invalid
+      },
+    },
+    formTab() {
+      this.formPhone.phone = ''
+      this.formEmail.email = ''
+      this.$v.formPhone.phone.$reset()
+      this.$v.formEmail.email.$reset()
+    },
+  },
+  mounted() {
+    if (!this.formPhone.phone) {
+      this.formPhone.phone = this.$store.state.author.phone.replace(
+        /\s|\)|\(|-/g,
+        ''
+      )
+    }
+    this.$store.commit('setVolunteerForm', null)
+    this.$store.commit('setOrganizationForm', null)
+  },
+  methods: {
+    async handleSubmit() {
+      this.loading = true
+      if (this.formTab === 'phone') {
+        this.$validateForm(this.$v.formPhone.phone, 'phone')
+
+        await this.$axios
+          .post(`user_phone_code/`, {
+            phone_number: this.formPhone.phone.replace(/\s|\)|\(|-/g, ''),
+          })
+          .then(() => {
+            this.$store.commit('author/setPhone', this.formPhone.phone)
+            this.$store.commit('author/setEmail', null)
+
+            if (this.tab === 'tab-1')
+              this.$router.push(this.localePath('/auth/verification-volunteer'))
+            else if (this.tab === 'tab-2')
+              this.$router.push(
+                this.localePath('/auth/verification-organization')
+              )
+          })
+          .catch((err) => {
+            this.$getErrorMessage(err)
+          })
+          .finally(() => {
+            this.loading = false
+          })
+      } else {
+        await this.$axios
+          .post(`user_email_code/`, {
+            email: this.formEmail.email,
+          })
+          .then(() => {
+            this.$store.commit('author/setEmail', this.formEmail.email)
+            this.$store.commit('author/setPhone', null)
+
+            if (this.tab === 'tab-1')
+              this.$router.push(this.localePath('/auth/verification-volunteer'))
+            else if (this.tab === 'tab-2')
+              this.$router.push(
+                this.localePath('/auth/verification-organization')
+              )
+          })
+          .catch((err) => {
+            this.$getErrorMessage(err)
+          })
+          .finally(() => {
+            this.loading = false
+          })
+      }
+
+      this.$store.commit('author/setFormTab', this.formTab)
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.auth__link {
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: #da6b3b !important;
+  }
+}
+</style>

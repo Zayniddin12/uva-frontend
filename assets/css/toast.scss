@@ -1,0 +1,36 @@
+.Vue-Toastification__toast--warning {
+
+  .toast-icon {
+    height: 24px;
+    width: 24px;
+    background-image: url("@/static/icons/toast-warning.svg");
+  }
+}
+
+.Vue-Toastification__toast--error {
+
+  .toast-icon {
+    height: 24px;
+    width: 24px;
+    background-image: url("@/static/icons/toast-error.svg");
+  }
+}
+
+.Vue-Toastification__toast--info {
+
+  .toast-icon {
+    height: 24px;
+    width: 24px;
+    background-image: url("@/static/icons/toast-retry.svg");
+  }
+
+}
+.Vue-Toastification__toast--success {
+
+  .toast-icon {
+    height: 24px;
+    width: 24px;
+    background-image: url("@/static/icons/toast-success.svg");
+  }
+
+}

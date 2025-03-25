@@ -1,0 +1,54 @@
+
+/* Cormorant-bold - latin */
+@font-face {
+  font-family: 'Cormorant';
+  font-style: normal;
+  font-weight: 700;
+  src: url("~/assets/fonts/Cormorant-Bold.woff2") format('woff2'),
+  url('~/assets/fonts/Cormorant-Bold.woff') format('woff');
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("~/assets/fonts/OpenSans-Regular.woff2") format('woff2'),
+  url('~/assets/fonts/OpenSans-Regular.woff') format('woff');
+}
+
+/* open-sans-500 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('~/assets/fonts/OpenSans-Medium.woff2') format('woff2'),
+  url('~/assets/fonts/OpenSans-Medium.woff') format('woff');
+}
+
+/* open-sans-600 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('~/assets/fonts/OpenSans-SemiBold.woff2') format('woff2'),
+  url('~/assets/fonts/OpenSans-SemiBold.woff') format('woff');
+}
+
+/* open-sans-700 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url("~/assets/fonts/OpenSans-Bold.woff") format('woff'),
+  url("~/assets/fonts/OpenSans-Bold.woff2") format('woff2')
+}
+
+/* open-sans-800 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('~/assets/fonts/OpenSans-ExtraBold.woff2') format('woff2'),
+  url('~/assets/fonts/OpenSans-ExtraBold.woff') format('woff');
+}

@@ -1,0 +1,145 @@
+//!<ПЕРЕМЕННЫЕ>=============================================================================================
+$maxWidth: 1440;
+$fontFamily: "Open Sans";
+$container: 1185;
+//!</ПЕРЕМЕННЫЕ>======================================================================================
+
+//!<Миксины>==========================================================================================
+@mixin adaptiv($indentType, $pcSize, $mobSize, $important: false) {
+  $addSize: $pcSize - $mobSize;
+  $answer: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+  @if $important == false {
+    #{$indentType}: $pcSize + px;
+    @media (max-width: #{$maxWidth + px}) {
+      #{$indentType}: $answer;
+    }
+  } @else {
+    #{$indentType}: $pcSize + px !important;
+    @media (max-width: #{$maxWidth + px}) {
+      #{$indentType}: $answer !important;
+    }
+  }
+}
+//!<Миксины>==========================================================================================
+
+//!<Settings-Styles>==================================================================================
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease-out;
+}
+// animation  slide-fade
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+  transition-delay: 0.3s;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+// animation  slide-down
+.slide-down-enter-active {
+  transition: 0.3s ease-in;
+}
+.slide-down-leave-active {
+  transition: 0.3s cubic-bezier(0, 1, 0.5, 1);
+}
+.slide-down-enter-to,
+.slide-down-leave {
+  max-height: 100px;
+  overflow: hidden;
+  opacity: 1;
+}
+.slide-down-enter,
+.slide-down-leave-to {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+//====================================================================================================
+//!<Settings-Styles>==================================================================================
+html {
+  font-family: $fontFamily, sans-serif;
+  font-style: normal;
+  overflow-x: hidden;
+  & input, & textarea {
+    font-family: $fontFamily, sans-serif;
+    font-style: normal;
+    @media (max-width: 600px) {
+      font-size: 16px !important;
+    }
+  }
+  &._lock {
+    overflow: hidden !important;
+    padding-right: 5px;
+
+    @media (max-width: 600px) {
+      padding-right: 0 !important;
+    }
+  }
+  img {
+    max-width: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  *,
+  *:focus {
+    outline: none;
+  }
+}
+svg {
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+::-webkit-scrollbar-track {
+  background: #dfe2e7;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bbced6;
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a5c9d9;
+}
+.container {
+  max-width: $container + 30 + px !important;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px !important;
+  @media (max-width: 1024px) {
+    max-width: 1024px !important;
+  }
+  @media (max-width: 768px) {
+    max-width: 768px !important;
+  }
+  @media (max-width: 640px) {
+    max-width: 100% !important;
+    padding: 0 10px !important;
+  }
+}
+.v-application--wrap {
+  min-height: calc(100vh - 301px) !important;
+}
+
+.no-scroll{
+  overflow-y: hidden !important;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+}
+
+//!<Settings-Styles>==================================================================================

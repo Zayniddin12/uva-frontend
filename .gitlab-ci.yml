@@ -1,0 +1,28 @@
+stages:
+  - test 
+  - deployment
+
+
+test:
+  stage: test
+  script:
+    - sudo chown -R gitlab-runner:gitlab-runner /var/www/volontyor/frontend
+    - rsync -rult --delete-after --exclude=.git/ --exclude=dist/ --exclude=.gitlab-ci.yml --exclude=.env --exclude=node_modules/ $CI_PROJECT_DIR/ /var/www/volontyor/frontend
+    - cd /var/www/volontyor/frontend && source /home/gitlab-runner/.nvm/nvm.sh && nvm use 16 
+  tags:
+    - master 
+  only:
+    - redesign
+
+
+deployment:
+  stage: deployment
+  script:
+    - cd /var/www/volontyor/frontend
+    - source /home/gitlab-runner/.nvm/nvm.sh && nvm use 16
+    - yarn
+    - yarn build
+  tags:
+    - master 
+  only:
+    - redesign
